@@ -35,5 +35,23 @@ class AboutpageTest(SimpleTestCase):
         response = self.client.get(reverse("about"))
         self.assertContains(response, "<h1>Company About Page</h1>")
         
+class ProductspageTest(SimpleTestCase):
+    def test_url_exists_at_correct_location(self):
+        response = self.client.get("/products/")
+        self.assertEqual(response.status_code, 200)
+        
+    def test_url_available_by_name(self):
+        response = self.client.get(reverse("products"))
+        self.assertEqual(response.status_code, 200)
+        
+    def test_template_name_correct(self):
+        response = self.client.get(reverse("products"))
+        self.assertTemplateUsed(response, "products.html")
+        
+    def test_template_content(self):
+        response = self.client.get(reverse("products"))
+        self.assertContains(response, "<h1>Company Products</h1>")
+        
+        
 
 # Create your tests here.

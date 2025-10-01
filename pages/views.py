@@ -17,3 +17,9 @@ class AboutPageView(TemplateView):
         context["contact_address"] = "123 Main Street"
         context["phone_number"] = "555-555-5555"
         return context
+        
+def products_page_view(request):
+    context = {
+        "product_list": ["eggs", "milk", "bread", "cheese"],
+        }
+    return render(request, "products.html", context)
